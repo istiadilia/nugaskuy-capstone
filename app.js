@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import endpoint from './src/endpoint/index.js'
-import key from './src/config/index.js'
+import key from './src/state/index.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)

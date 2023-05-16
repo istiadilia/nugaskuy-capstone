@@ -1,5 +1,5 @@
 import express from "express"
-
+import conn from '../config/index.js'
 const endpoint = express.Router()
 
 endpoint.get('/', (req, res) => { //welcome response endpoint
