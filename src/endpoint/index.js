@@ -1,5 +1,7 @@
 import express from "express"
-import conn from '../config/index.js'
+import auth_user from "./users/routes/auth.js"
+
+
 const endpoint = express.Router()
 
 endpoint.get('/', (req, res) => { //welcome response endpoint
@@ -10,6 +12,8 @@ endpoint.get('/', (req, res) => { //welcome response endpoint
         version: "0.1 **dev**"
     })
 })
+
+endpoint.use('/user', auth_user)
 
 endpoint.get('*', (req, res) => { //error response endpoint
     res.send({
