@@ -27,15 +27,16 @@ const register = async (req, res) => {
                     sameSite: "none"
                 })
 
-                res.json({
+                res.status(200).json({
                     status: 200,
                     message: `Success Register New User with email : ${email}`,
                     access_token
                 })
             } else {
-                res.json({
+                res.status(404).json({
                     status: 404,
-                    message: err
+                    message: 'failed',
+                    info: err
                 })
             }
         }
@@ -48,15 +49,17 @@ const register = async (req, res) => {
             if (result.length === 0) {
                 do_register()
             } else {
-                res.json({
-                    status: 404,
-                    message: "Email Is Already Registrated, Use Another Email"
+                res.status(400).json({
+                    status: 400,
+                    message: 'failed',
+                    info: "Email Is Already Registrated, Use Another Email"
                 })
             }
         } else {
-            res.json({
+            res.status(404).json({
                 status: 404,
-                message: err
+                message: 'failed',
+                info: err
             })
         }
     }
@@ -91,17 +94,25 @@ const login = async (req, res) => {
                         message: `Success Login As User ${email}`,
                         access_token
                     })
+                } else {
+                    res.status(400).json({
+                        status: 400,
+                        message: 'failed',
+                        info: "Password doesn't match"
+                    })
                 }
             } else {
-                res.json({
-                    status: 200,
-                    message: "User Isn't Registered"
+                res.status(400).json({
+                    status: 400,
+                    message: 'failed',
+                    info: "User Isn't Registered"
                 })
             }
         } else {
-            res.json({
+            res.status(404).json({
                 status: 404,
-                message: err
+                message: 'failed',
+                info: err
             })
         }
     }
@@ -109,9 +120,60 @@ const login = async (req, res) => {
     await conn.query(query, payload, handle_response)
 }
 
+const refresh_token = async (req, res) => {
+    const { refreshToken } = req.cookies
+
+    try {
+
+        if (!refreshToken) {
+            return res.status(400).json({
+                status: 400,
+                message: 'failed',
+                info: 'Refresh token not found'
+            })
+        }
+
+        verify_refresh_token(refreshToken, (error, decoded) => {
+            if (error) {
+                return res.status(401).json({
+                    status: 401,
+                    message: 'failed',
+                    info: 'Forbidden Access'
+                })
+            }
+
+            const access_token = create_access_token(decoded.id, decoded.role)
+            const refresh_token = create_refresh_token(decoded.id, decoded.role)
+
+
+            //send cookie with contain refresh token
+            res.cookie("refreshToken", refresh_token, {
+                expires: new Date(Date.now() + 1000 * 60 * 60 * 24), //one day
+                httpOnly: true,
+                secure: true,
+                sameSite: "none"
+            })
+
+            res.status(200).json({
+                status: 200,
+                message: 'Success refresh token',
+                access_token
+            })
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            status: 500,
+            message: 'failed',
+            info: 'Server Error'
+        })
+    }
+}
+
 const controller = {
     register,
-    login
+    login,
+    refresh_token
 }
 
 export default controller
