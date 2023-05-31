@@ -4,6 +4,8 @@ import auth_mentor from "./mentors/routes/auth.js"
 import modul_mentor from "./mentors/routes/modul.js"
 import mata_pelajaran from "./mata_pelajaran/routes/mata_pelajaran.js"
 import modul from "./modul/routes/modul.js"
+import jadwal from "./jadwal/routes/jadwal.js"
+import available_mentor from "./mentors/routes/mentor_list.js"
 
 
 const endpoint = express.Router()
@@ -22,6 +24,8 @@ endpoint.use('/mentor', auth_mentor)
 endpoint.use('/mata-pelajaran', mata_pelajaran)
 endpoint.use('/modul', modul)
 endpoint.use('/modul-mentor', modul_mentor)
+endpoint.use('/jadwal', jadwal)
+endpoint.use('/available-mentor', available_mentor)
 
 endpoint.get('*', (req, res) => { //error response endpoint
     res.send({

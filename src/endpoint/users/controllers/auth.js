@@ -9,6 +9,51 @@ const register = async (req, res) => {
 
     const query_find = 'SELECT * FROM tb_user WHERE email = ?'
 
+    const do_register = async () => {
+        const encrypted_password = await encrpyt_one_way(password)
+        const payload = [id_user, nama, no_telp, asal_prov, asal_kab, "not defined", email, encrypted_password]
+
+        const query_regist = 'INSERT INTO tb_user (id_user, nama, no_telp, asal_prov, asal_kab, foto_profile, email, password) VALUE (?,?,?,?,?,?,?,?)'
+
+        const handle_register = (error, result) => {
+            if (!error) {
+                const access_token = create_access_token(id_user, 'User');
+                const refresh_token = create_refresh_token(id_user, 'User')
+
+                res.cookie("refreshToken", refresh_token, {
+                    expires: new Date(Date.now() + 1000 * 60 * 60 * 24), //one day
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: "none"
+                })
+
+                res.status(200).json({
+                    status: 200,
+                    message: `Success Register New User with email : ${email}`,
+                    data: {
+                        id: result[0].id_user,
+                        nama: result[0].nama,
+                        no_telp: result[0].no_telp,
+                        email: result[0].email,
+                        asal_kab: result[0].asal_kab,
+                        asal_prov: result[0].asal_prov,
+                        foto_profile: result[0].foto_profile,
+                        deskripsi: result[0].deskripsi
+                    },
+                    access_token
+                })
+            } else {
+                res.status(404).json({
+                    status: 404,
+                    message: 'failed',
+                    info: err
+                })
+            }
+        }
+
+        conn.query(query_regist, payload, handle_register)
+    }
+
     const handle_check_exist = (err, result) => {
         if (!err) {
             if (result.length === 0) {
@@ -27,41 +72,6 @@ const register = async (req, res) => {
                 info: err
             })
         }
-    }
-
-    const do_register = async () => {
-        const encrypted_password = await encrpyt_one_way(password)
-        const payload = [id_user, nama, no_telp, asal_prov, asal_kab, "not defined", email, encrypted_password]
-
-        const query_regist = 'INSERT INTO tb_user (id_user, nama, no_telp, asal_prov, asal_kab, foto_profile, email, password) VALUE (?,?,?,?,?,?,?,?)'
-
-        const handle_register = (error) => {
-            if (!error) {
-                const access_token = create_access_token(id_user, 'User');
-                const refresh_token = create_refresh_token(id_user, 'User')
-
-                res.cookie("refreshToken", refresh_token, {
-                    expires: new Date(Date.now() + 1000 * 60 * 60 * 24), //one day
-                    httpOnly: true,
-                    secure: true,
-                    sameSite: "none"
-                })
-
-                res.status(200).json({
-                    status: 200,
-                    message: `Success Register New User with email : ${email}`,
-                    access_token
-                })
-            } else {
-                res.status(404).json({
-                    status: 404,
-                    message: 'failed',
-                    info: err
-                })
-            }
-        }
-
-        conn.query(query_regist, payload, handle_register)
     }
 
     await conn.query(query_find, [email], handle_check_exist)
@@ -92,6 +102,16 @@ const login = async (req, res) => {
                     res.json({
                         status: 200,
                         message: `Success Login As User ${email}`,
+                        data: {
+                            id: result[0].id_user,
+                            nama: result[0].nama,
+                            no_telp: result[0].no_telp,
+                            email: result[0].email,
+                            asal_kab: result[0].asal_kab,
+                            asal_prov: result[0].asal_prov,
+                            foto_profile: result[0].foto_profile,
+                            deskripsi: result[0].deskripsi
+                        },
                         access_token
                     })
                 } else {

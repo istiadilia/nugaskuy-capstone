@@ -4,21 +4,21 @@ import { create_access_token, create_refresh_token, verify_refresh_token } from 
 import conn from '../../../config/index.js'
 
 const register = async (req, res) => {
-    const id_user = uid(16)
+    const id_mentor = uid(16)
     const { nama, no_telp, deskripsi, email, password } = req.body
 
     const query_find = 'SELECT * FROM tb_mentor WHERE email = ?'
 
     const do_register = async () => {
         const encrypted_password = await encrpyt_one_way(password)
-        const payload = [id_user, nama, no_telp, deskripsi, "not defined", email, encrypted_password]
+        const payload = [id_mentor, nama, no_telp, deskripsi, "not defined", email, encrypted_password]
 
         const query_regist = 'INSERT INTO tb_mentor (id_mentor, nama, no_telp, deskripsi, foto_profile, email, password) VALUE (?,?,?,?,?,?,?)'
 
-        const handle_register = (error) => {
+        const handle_register = (error, result) => {
             if (!error) {
-                const access_token = create_access_token(id_user, 'Mentor');
-                const refresh_token = create_refresh_token(id_user, 'Mentor')
+                const access_token = create_access_token(id_mentor, 'Mentor');
+                const refresh_token = create_refresh_token(id_mentor, 'Mentor')
 
                 res.cookie("refreshToken", refresh_token, {
                     expires: new Date(Date.now() + 1000 * 60 * 60 * 24), //one day
@@ -30,6 +30,14 @@ const register = async (req, res) => {
                 res.status(200).json({
                     status: 200,
                     message: `Success Register New Mentor with email : ${email}`,
+                    data: {
+                        id: result[0].id_mentor,
+                        nama: result[0].nama,
+                        no_telp: result[0].no_telp,
+                        email: result[0].email,
+                        foto_profile: result[0].foto_profile,
+                        deskripsi: result[0].deskripsi
+                    },
                     access_token
                 })
             } else {
@@ -79,8 +87,8 @@ const login = async (req, res) => {
                 const hashPassword = await pairing_one_way(password.toString(), result[0].password)
 
                 if (hashPassword) {
-                    const access_token = create_access_token(result[0].id_user, 'Mentor');
-                    const refresh_token = create_refresh_token(result[0].id_user, 'Mentor')
+                    const access_token = create_access_token(result[0].id_mentor, 'Mentor');
+                    const refresh_token = create_refresh_token(result[0].id_mentor, 'Mentor')
 
                     res.cookie("refreshToken", refresh_token, {
                         expires: new Date(Date.now() + 1000 * 60 * 60 * 24), //one day
@@ -92,6 +100,14 @@ const login = async (req, res) => {
                     res.json({
                         status: 200,
                         message: `Success Login As User ${email}`,
+                        data: {
+                            id: result[0].id_mentor,
+                            nama: result[0].nama,
+                            no_telp: result[0].no_telp,
+                            email: result[0].email,
+                            foto_profile: result[0].foto_profile,
+                            deskripsi: result[0].deskripsi
+                        },
                         access_token
                     })
                 } else {
