@@ -1,0 +1,22 @@
+steps:
+  # Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/backed-nugaskuy/flask-api', '.']
+
+  # Push Docker image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/backed-nugaskuy/flask-api']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'flask-api'
+      - '--image'
+      - 'gcr.io/backed-nugaskuy/flask-api'
+      - '--region'
+      - 'asia-southeast1'
+      # Add additional flags/options as needed
+
+timeout: '1600s'  # Set a suitable timeout for the build
