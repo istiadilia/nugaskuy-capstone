@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 8080
 
 # Menjalankan server aplikasi Flask
-CMD [ "python", "app.py" ]
+CMD exec gunicorn --bind :$PORT wsgi:app
