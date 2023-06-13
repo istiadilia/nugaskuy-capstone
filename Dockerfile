@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Menginstal dependensi yang diperlukan
-RUN pip install --no-cache-dir Pillow google-cloud-storage flask tensorflow
+RUN pip install --no-cache-dir Pillow google-cloud-storage flask tensorflow gunicorn
 
 # Menyalin seluruh kode proyek ke direktori kerja di dalam container
 COPY . .
