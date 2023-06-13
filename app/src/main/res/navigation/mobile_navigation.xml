@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_mentoring">
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_mentoring"-->
+<!--        android:name="com.example.nugaskuy.ui.home.MentoringFragment"-->
+<!--        android:name="com.dicoding.picodiploma.nugaskuy_ap.ui.home.MentoringFragment"-->
+<!--        tools:layout="@layout/fragment_mentoring"-->
+<!--        android:label="MentoringFragment" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_profile"-->
+<!--        tools:layout="@layout/fragment_profile"-->
+<!--        android:name="com.example.nugaskuy.ui.notifications.ProfileFragment"-->
+<!--        android:label="ProfileFragment" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_ai"-->
+<!--        tools:layout="@layout/fragment_ai"-->
+<!--        android:name="com.example.nugaskuy.ui.dashboard.AIFragment"-->
+<!--        android:label="AIFragment" />-->
+
+    <fragment
+        android:id="@+id/navigation_mentoring"
+        android:name="com.dicoding.picodiploma.nugaskuy_ap.ui.mentoring.MentoringFragment"
+        tools:layout="@layout/fragment_mentoring"
+        android:label="MentoringFragment" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        tools:layout="@layout/fragment_profile"
+        android:name="com.dicoding.picodiploma.nugaskuy_ap.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/navigation_ai"
+        tools:layout="@layout/fragment_ai"
+        android:name="com.dicoding.picodiploma.nugaskuy_ap.ui.ai.AIFragment"
+        android:label="AIFragment" />
+</navigation>

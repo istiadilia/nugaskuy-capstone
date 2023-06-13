@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_mentoring"
+        android:icon="@drawable/mentoring"
+        android:title="Mentoring" />
+
+    <item
+        android:id="@+id/navigation_ai"
+        android:icon="@drawable/ai"
+        android:title="Teman AI" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/pengguna"
+        android:title="Pengguna" />
+
+</menu>
