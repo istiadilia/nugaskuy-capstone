@@ -33,6 +33,7 @@ def load_model_from_gcs():
 
     return model
 
+model = load_model_from_gcs()
 
 def get_recommended_images(category, num_images):
     # Membuat objek storage client
@@ -56,8 +57,6 @@ def get_recommended_images(category, num_images):
 
     # Mengembalikan daftar URL publik untuk gambar yang direkomendasikan
     return [f"https://storage.googleapis.com/{bucket_name}/{image_file}" for image_file in recommended_images]
-
-model = load_model_from_gcs()
 
 def load_and_predict(image):
     img_size = 224
