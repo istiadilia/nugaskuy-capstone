@@ -1,24 +1,10 @@
 steps:
-  # Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/backed-nugaskuy/nugaskuy-be-flask', '.']
-
-  # Push Docker image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/backed-nugaskuy/nugaskuy-be-flask']
-
-  # Deploy to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'run'
-      - 'deploy'
-      - 'nugaskuy-be-flask'
-      - '--image'
-      - 'gcr.io/backed-nugaskuy/nugaskuy-be-flask'
-      - '--region'
-      - 'asia-southeast1'
-      - 'port'
-      - '8080'
-      # Add additional flags/options as needed
+    args: ['run', 'deploy', 'nugaskuy-be-flask', '--image', 'gcr.io/backed-nugaskuy/nugaskuy-be-flask', '--platform', 'managed', '--region', 'asia-southeast2', '--allow-unauthenticated', '--port', '8080']
 
-timeout: '1600s'  # Set a suitable timeout for the build
+images:
+  - 'gcr.io/backed-nugaskuy/nugaskuy-be-flask'
