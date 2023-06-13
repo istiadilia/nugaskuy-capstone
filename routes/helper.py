@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask,request,jsonify
-# from controllers.logic import load_and_predict, get_recommended_images
+from controllers.logic import load_and_predict, get_recommended_images
 
 app = Flask(__name__)
 endpoint_prefix = os.environ.get('ENDPOINT_PREFIX', '/')
@@ -11,8 +11,8 @@ endpoint_prefix = os.environ.get('ENDPOINT_PREFIX', '/')
 def default():
     return jsonify({'message': 'Welcome to the API'}),201
 
-# @app.route('/predict', methods=['POST'])
-# def predict():
+@app.route('/predict', methods=['POST'])
+def predict():
     if 'file' not in request.files:
         return jsonify({'error': 'No file in the request.'}), 400
 

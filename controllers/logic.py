@@ -11,29 +11,29 @@ bucket_name = 'nugaskuy'
 dataset_dir = 'dataset'
 model_name = 'model.h5'
 
-# def load_model_from_gcs():
-#     # Buat objek storage client
-#     storage_client = storage.Client()
+def load_model_from_gcs():
+    # Buat objek storage client
+    storage_client = storage.Client()
 
-#     # Dapatkan objek bucket
-#     bucket = storage_client.get_bucket(bucket_name)
+    # Dapatkan objek bucket
+    bucket = storage_client.get_bucket(bucket_name)
 
-#     # Buat file temporer untuk menyimpan model
-#     temp_model_path = os.path.join(tempfile.gettempdir(), model_name)
+    # Buat file temporer untuk menyimpan model
+    temp_model_path = os.path.join(tempfile.gettempdir(), model_name)
 
-#     # Unduh model dari bucket ke file temporer
-#     blob = bucket.blob(model_name)
-#     blob.download_to_filename(temp_model_path)
+    # Unduh model dari bucket ke file temporer
+    blob = bucket.blob(model_name)
+    blob.download_to_filename(temp_model_path)
 
-#     # Muat model dari file temporer
-#     model = tf.keras.models.load_model(temp_model_path)
+    # Muat model dari file temporer
+    model = tf.keras.models.load_model(temp_model_path)
 
-#     # Hapus file temporer setelah model dimuat
-#     os.remove(temp_model_path)
+    # Hapus file temporer setelah model dimuat
+    os.remove(temp_model_path)
 
-#     return model
+    return model
 
-# model = load_model_from_gcs()
+model = load_model_from_gcs()
 
 def get_recommended_images(category, num_images):
     # Membuat objek storage client
@@ -58,7 +58,7 @@ def get_recommended_images(category, num_images):
     # Mengembalikan daftar URL publik untuk gambar yang direkomendasikan
     return [f"https://storage.googleapis.com/{bucket_name}/{image_file}" for image_file in recommended_images]
 
-# def load_and_predict(image):
+def load_and_predict(image):
     img_size = 224
 
     try:
