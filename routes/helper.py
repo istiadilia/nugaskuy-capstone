@@ -2,8 +2,7 @@ import os
 import tensorflow as tf
 
 from flask import Flask,request,jsonify
-# from controllers.logic import load_and_predict, get_recommended_images,load_model_from_gcs
-from controllers.logic import get_recommended_images
+from controllers.logic import load_and_predict, get_recommended_images
 
 app = Flask(__name__)
 endpoint_prefix = os.environ.get('ENDPOINT_PREFIX', '/')
