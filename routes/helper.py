@@ -1,4 +1,5 @@
 import os
+import requests
 
 from flask import Flask,request,jsonify
 from controllers.logic import load_and_predict, get_recommended_images
@@ -31,6 +32,12 @@ def predict():
         'path' : recommended_images
     })
 
+def download_model_from_url(destination_path):
+    response = requests.get('https://storage.googleapis.com/nugaskuy/model.h5')
+    with open(destination_path, 'wb') as file:
+        file.write(response.content)
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))  
+    download_model_from_url('model.h5')
     app.run(host="0.0.0.0",port=port)
