@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Menginstal dependensi yang diperlukan
-RUN pip install --no-cache-dir Pillow google-cloud-storage flask tensorflow gunicorn
+RUN pip install --no-cache-dir Pillow google-cloud-storage flask tensorflow gunicorn gevent
 
 # Menyalin seluruh kode proyek ke direktori kerja di dalam container
 COPY . .
@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 8080
 
 # Menjalankan server aplikasi Flask
-CMD exec gunicorn --bind :$PORT wsgi:app
+CMD exec gunicorn --bind :$PORT --timeout 600 --workers 3 --worker-class gevent --threads=3 --worker-connections=1000 wsgi:app
