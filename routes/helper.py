@@ -1,5 +1,4 @@
 import os
-import tensorflow as tf
 
 from flask import Flask,request,jsonify
 from controllers.logic import load_and_predict, get_recommended_images
@@ -18,8 +17,8 @@ def predict():
         return jsonify({'error': 'No file in the request.'}), 400
 
     file = request.files['file']
-    num_images = 5
-    predict_category, predict_categories = load_and_predict(file,model)
+    num_images = 8
+    predict_category, predict_categories = load_and_predict(file)
 
     if predict_category is None:
         return jsonify({'error': 'Invalid image file.'}), 400
