@@ -9,29 +9,6 @@ from PIL import Image
 
 bucket_name = 'nugaskuy' 
 dataset_dir = 'dataset'
-model = 'https://storage.googleapis.com/nugaskuy/model.h5'
-
-def load_model_from_gcs():
-    # Buat objek storage client
-    storage_client = storage.Client()
-
-    # Dapatkan objek bucket
-    bucket = storage_client.get_bucket(bucket_name)
-
-    # Buat file temporer untuk menyimpan model
-    temp_model_path = os.path.join(tempfile.gettempdir(), model_name)
-
-    # Unduh model dari bucket ke file temporer
-    blob = bucket.blob(model_name)
-    blob.download_to_filename(temp_model_path)
-
-    # Muat model dari file temporer
-    model = tf.keras.models.load_model(temp_model_path)
-
-    # Hapus file temporer setelah model dimuat
-    os.remove(temp_model_path)
-
-    return model
 
 def get_recommended_images(category, num_images):
     # Membuat objek storage client
@@ -57,8 +34,9 @@ def get_recommended_images(category, num_images):
     return [f"https://storage.googleapis.com/{bucket_name}/{image_file}" for image_file in recommended_images]
     # return recommended_images
 
-def load_and_predict(image,model):
+def load_and_predict(image):
     img_size = 224
+    model = tf.keras.models.load_model('https://storage.googleapis.com/nugaskuy/model.h5')
 
     try:
         # Setup Image untuk kebutuhan prediksi
