@@ -21,11 +21,12 @@ def default():
 
 @app.route('/predict', methods=['POST'])
 def recommend():
-    data : request.json
-    recommend_url = get_recommended_images(data.category,5)
+    data = request.json['category']
+
+    recommend_url = get_recommended_images(data,5)
 
     return jsonify({
-        'url' : recommend_url
+        'List' : recommend_url
     })
 
 # @app.route('/predict', methods=['POST'])
@@ -51,5 +52,7 @@ def recommend():
 
 if __name__ == '__main__':
     # model = tf.keras.models.load_model('D:\Project\capstone3\model.h5')
-    port = int(os.environ.get('PORT', 8080))  
-    app.run(host="0.0.0.0",port=port)
+    # port = int(os.environ.get('PORT', 8080))  
+    # app.run(host="0.0.0.0",port=port)
+    port = int(os.environ.get('PORT', 5000))  
+    app.run(port=port)

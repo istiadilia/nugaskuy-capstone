@@ -42,7 +42,7 @@ def get_recommended_images(category, num_images):
 
     # Mendapatkan daftar file dalam direktori kategori di bucket
     category_dir = os.path.join(dataset_dir, category)
-    blobs = bucket.list_blobs(prefix=category_dir)
+    blobs = bucket.list_blobs(prefix=category_dir + '/')
 
     # Mengambil nama file dari daftar blobs
     image_files = [blob.name for blob in blobs]
@@ -55,6 +55,7 @@ def get_recommended_images(category, num_images):
 
     # Mengembalikan daftar URL publik untuk gambar yang direkomendasikan
     return [f"https://storage.googleapis.com/{bucket_name}/{image_file}" for image_file in recommended_images]
+    # return recommended_images
 
 def load_and_predict(image,model):
     img_size = 224
