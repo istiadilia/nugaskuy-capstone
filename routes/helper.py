@@ -11,6 +11,7 @@ model = None
 
 @app.before_first_request
 def setup():
+    global model
     model = load_model_from_gcs()
 
 @app.route(endpoint_prefix + '/', methods=['GET'])

@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 8080
 
 # Menjalankan server aplikasi Flask
-CMD exec gunicorn --bind :$PORT --timeout 600 --workers 3 --worker-class gevent --threads=3 --worker-connections=1000 wsgi:app
+CMD exec gunicorn --bind :$PORT --timeout 600 --worker-class gevent --worker-connections=1000 wsgi:app
