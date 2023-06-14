@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dicoding.picodiploma.nugaskuy_ap.R
 import com.dicoding.picodiploma.nugaskuy_ap.databinding.FragmentMentoringBinding
 
 class MentoringFragment : Fragment() {

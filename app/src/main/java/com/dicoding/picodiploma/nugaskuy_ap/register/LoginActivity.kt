@@ -3,8 +3,7 @@ package com.dicoding.picodiploma.nugaskuy_ap.register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dicoding.picodiploma.nugaskuy_ap.BottomNavigationActivity
-import com.dicoding.picodiploma.nugaskuy_ap.R
+import com.dicoding.picodiploma.nugaskuy_ap.MainActivity
 import com.dicoding.picodiploma.nugaskuy_ap.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -17,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.loginBtn.setOnClickListener {
-            val intent = Intent(this, BottomNavigationActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 

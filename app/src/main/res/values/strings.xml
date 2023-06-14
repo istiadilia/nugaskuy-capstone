@@ -4,4 +4,22 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="landing_login_siswa">Masuk Sebagai Siswa</string>
+    <string name="landing_login_mentor">Masuk Sebagai Mentor</string>
+
+    <!--PAGE MENTORING-->
+    <string name="main_greeting">Halo,\nSobat NUGAS</string>
+    <string name="main_greeting2">Kamu lagi mau belajar apa, nih?</string>
+    <string name="matpel_matematika">Matematika\n</string>
+    <string name="matpel_fisika">Fisika\n</string>
+    <string name="matpel_kimia">Kimia\n</string>
+
+    <!--PAGE PENGGUNA-->
+    <string name="detailclass_modul">Modul</string>
+    <string name="detailclass_data_modul">Persamaan Nilai Mutlak</string>
+    <string name="detailclass_jadwal_sesi">Jadwal Sesi</string>
+    <string name="detailclass_data_jadwal">Jumat, 19 Mei (15.00 - 17.00 WIB)</string>
+    <string name="detailclass_mentor">Mentor</string>
+    <string name="ilustrasi_banner">ilustrasi banner</string>
+
 </resources>

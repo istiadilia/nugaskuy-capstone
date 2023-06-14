@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_mentoring"
-        android:icon="@drawable/mentoring"
+        android:icon="@drawable/icon_mentoring"
         android:title="Mentoring" />
 
     <item
         android:id="@+id/navigation_ai"
-        android:icon="@drawable/ai"
+        android:icon="@drawable/icon_ai"
         android:title="Teman AI" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/pengguna"
+        android:icon="@drawable/icon_pengguna"
         android:title="Pengguna" />
 
 </menu>
