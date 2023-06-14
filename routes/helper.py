@@ -2,7 +2,8 @@ import os
 import tensorflow as tf
 
 from flask import Flask,request,jsonify
-from controllers.logic import load_and_predict, get_recommended_images,load_model_from_gcs
+# from controllers.logic import load_and_predict, get_recommended_images,load_model_from_gcs
+from controllers.logic import get_recommended_images
 
 app = Flask(__name__)
 endpoint_prefix = os.environ.get('ENDPOINT_PREFIX', '/')
@@ -17,6 +18,15 @@ model = None
 @app.route(endpoint_prefix + '/', methods=['GET'])
 def default():
     return jsonify({'message': 'Welcome to the API'}),201
+
+@app.route('/predict', methods=['POST'])
+def recommend():
+    data : request.json
+    recommend_url = get_recommended_images(data.category,5)
+
+    return jsonify({
+        'url' : recommend_url
+    })
 
 # @app.route('/predict', methods=['POST'])
 # def predict():
