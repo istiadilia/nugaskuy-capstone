@@ -37,7 +37,7 @@ def get_recommended_images(category, num_images):
 
 def load_and_predict(image):
     img_size = 224
-    model = tf.keras.models.load_model(local_model_path)
+    model = tf.keras.models.load_model('gs://nugaskuy/model.h5')
 
     try:
         # Setup Image untuk kebutuhan prediksi
