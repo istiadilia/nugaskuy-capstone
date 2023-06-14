@@ -1,11 +1,17 @@
 import os
+import tensorflow as tf
 
 from flask import Flask,request,jsonify
-from controllers.logic import load_and_predict, get_recommended_images
+from controllers.logic import load_and_predict, get_recommended_images,load_model_from_gcs
 
 app = Flask(__name__)
 endpoint_prefix = os.environ.get('ENDPOINT_PREFIX', '/')
 
+model = None
+
+@app.before_first_request
+def setup():
+    model = load_model_from_gcs()
 
 @app.route(endpoint_prefix + '/', methods=['GET'])
 def default():
@@ -13,12 +19,13 @@ def default():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    global model
     if 'file' not in request.files:
         return jsonify({'error': 'No file in the request.'}), 400
 
     file = request.files['file']
     num_images = 5
-    predict_category, predict_categories = load_and_predict(file)
+    predict_category, predict_categories = load_and_predict(file,model)
 
     if predict_category is None:
         return jsonify({'error': 'Invalid image file.'}), 400
@@ -32,5 +39,6 @@ def predict():
     })
 
 if __name__ == '__main__':
+    # model = tf.keras.models.load_model('D:\Project\capstone3\model.h5')
     port = int(os.environ.get('PORT', 8080))  
     app.run(host="0.0.0.0",port=port)
