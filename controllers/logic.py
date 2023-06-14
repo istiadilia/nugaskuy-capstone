@@ -9,7 +9,7 @@ from PIL import Image
 
 bucket_name = 'nugaskuy' 
 dataset_dir = 'dataset'
-model_name = 'model.h5'
+model = 'https://storage.googleapis.com/nugaskuy/model.h5'
 
 def load_model_from_gcs():
     # Buat objek storage client
