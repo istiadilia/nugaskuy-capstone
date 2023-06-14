@@ -14,12 +14,12 @@ class MainLogin : AppCompatActivity() {
         binding = ActivityFirstLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button.setOnClickListener {
+        binding.buttonSiswa.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        binding.button2.setOnClickListener {
+        binding.buttonMentor.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

@@ -6,37 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".register.MainLogin">
 
+    <ImageView
+        android:id="@+id/nugaskuy_logo"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="170dp"
+        android:src="@drawable/icon_nugaskuy_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-        android:id="@+id/button"
-        android:layout_width="200dp"
+        android:id="@+id/buttonSiswa"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/component_button_blue04"
         android:backgroundTint="@color/blue_04"
         android:fontFamily="@font/poppinsmedium"
         android:text="@string/landing_login_siswa"
-        android:textColor="@color/white"
         android:textAllCaps="false"
-        app:cornerRadius="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@id/nugaskuy_logo" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="200dp"
+        android:id="@+id/buttonMentor"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/component_button_blue04"
         android:backgroundTint="@color/blue_04"
         android:fontFamily="@font/poppinsmedium"
         android:text="@string/landing_login_mentor"
-        android:textColor="@color/white"
         android:textAllCaps="false"
-        app:cornerRadius="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSiswa" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,15 +50,19 @@
             android:label="@string/title_activity_bottom_navigation" />
         <activity
             android:name=".profil.InformationUserActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".userclass.DetailClassActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".userclass.MyClassActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".profil.ProfileActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".register.RegisterActivity"
@@ -68,6 +72,7 @@
             android:exported="false" />
         <activity
             android:name=".register.MainLogin"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
