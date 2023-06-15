@@ -67,7 +67,7 @@ def load_and_predict(image):
         img_array = img_array.astype(np.float32)
 
         # Melakukan prediksi
-        prediction = load_and_run_tflite_model('D:\Project\capstone3\modelv2.tflite',img_array)
+        prediction = load_and_run_tflite_model('gs://nugaskuy/modelv2.tflite',img_array)
         predicted_class = np.argmax(prediction)
 
         categories = ["logaritma", "spldv", "integral", "pertidaksamaan", "eksponen"]
