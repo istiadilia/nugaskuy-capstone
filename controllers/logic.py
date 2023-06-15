@@ -12,7 +12,7 @@ dataset_dir = 'dataset'
 
 def load_and_run_tflite_model(input_data):
     # Load the TFLite model
-    interpreter = tf.lite.Interpreter(model_path='gs://nugaskuy/modelv2.tflite')
+    interpreter = tf.lite.Interpreter(model_path='https://storage.googleapis.com/nugaskuy/modelv2.tflite')
     interpreter.allocate_tensors()
 
     # Get input and output details
