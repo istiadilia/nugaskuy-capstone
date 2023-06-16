@@ -10,9 +10,9 @@
     <!--PAGE MENTORING-->
     <string name="main_greeting">Halo,\nSobat NUGAS</string>
     <string name="main_greeting2">Kamu lagi mau belajar apa, nih?</string>
-    <string name="matpel_matematika">Matematika\n</string>
-    <string name="matpel_fisika">Fisika\n</string>
-    <string name="matpel_kimia">Kimia\n</string>
+    <string name="matpel_matematika">Matematika</string>
+    <string name="matpel_fisika">Fisika</string>
+    <string name="matpel_kimia">Kimia</string>
 
     <!--PAGE PENGGUNA-->
     <string name="detailclass_modul">Modul</string>
@@ -23,5 +23,7 @@
     <string name="ilustrasi_banner">ilustrasi banner</string>
     <string name="btn_scan_soal">Scan Soal</string>
     <string name="teman_ai_capt">Butuh bantuan ngerjain soal?\nSantai, teman AI siap bantu!</string>
+    <string name="btn_to_scan_soal">Mulai gunakan</string>
+    <string name="capture_needed">Waduh, kamu belum ambil gambar!</string>
 
 </resources>
